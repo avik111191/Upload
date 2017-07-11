@@ -9,10 +9,14 @@
     <Grid RenderTransformOrigin="0.569,0.702" Margin="0,0,2,3">
         <Button x:Name="Cxml" Content="Convert to xml" HorizontalAlignment="Left" Margin="494,4,0,0" VerticalAlignment="Top" Width="99" Click="Cxml_Click"/>
         <Button x:Name="ExtCont" Content="Extaract contents" HorizontalAlignment="Left" Margin="598,4,0,0" VerticalAlignment="Top" Width="99"/>
-        <Button x:Name="UpldCon" Content="Upload  contents" HorizontalAlignment="Left" Margin="702,4,0,0" VerticalAlignment="Top" Width="99"/>
+        <Button x:Name="UpldCon" Content="Upload  contents" HorizontalAlignment="Left" Margin="702,4,0,0" VerticalAlignment="Top" Width="99" Click="UploadEv"/>
         <WebBrowser x:Name="web" HorizontalAlignment="Left" Height="946" Margin="9,29,0,0" VerticalAlignment="Top" Width="792" LoadCompleted="web_LoadCompleted"/>
         <TextBox x:Name="urltb" HorizontalAlignment="Left" Height="23" Margin="10,4,0,0" TextWrapping="Wrap" Text="url" VerticalAlignment="Top" Width="307"/>
         <Button x:Name="htmlLoad" Content="Load HTML" HorizontalAlignment="Left" Margin="322,3,0,0" VerticalAlignment="Top" Width="167" Click="htmlLoad_Click"/>
+        <TextBox x:Name="TitleTb" HorizontalAlignment="Left" Height="20" Margin="806,29,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="473"/>
+        <TextBox x:Name="Authors" HorizontalAlignment="Left" Height="20" Margin="806,54,0,0" TextWrapping="Wrap" Text="Authors" VerticalAlignment="Top" Width="473"/>
+        <TextBox x:Name="Link" HorizontalAlignment="Left" Height="20" Margin="806,79,0,0" TextWrapping="Wrap" Text="Link" VerticalAlignment="Top" Width="473"/>
+        <TextBox x:Name="Contents" HorizontalAlignment="Left" Height="20" Margin="806,104,0,0" TextWrapping="Wrap" Text="Contents" VerticalAlignment="Top" Width="473"/>
 
     </Grid>
 </Window>

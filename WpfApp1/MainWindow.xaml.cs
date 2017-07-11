@@ -56,5 +56,20 @@ namespace WpfApp1
             }
             htmlString = html;
         }
+
+        private void UploadEv(object sender, RoutedEventArgs e)
+        {
+            DataClasses1DataContext dc =new DataClasses1DataContext();
+            PapersTable pa=new PapersTable();
+            pa.Title=TitleTb.Text;
+            pa.Authors=Authors.Text;
+            pa.Link=Link.Text;
+            pa.Contents=Contents.Text;
+           
+            pa.Id=Guid.NewGuid();
+            dc.PapersTables.InsertOnSubmit(pa);
+            dc.SubmitChanges();
+
+        }
     }
 }

@@ -30,10 +30,13 @@ namespace WpfApp1
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertPapersTable(PapersTable instance);
+    partial void UpdatePapersTable(PapersTable instance);
+    partial void DeletePapersTable(PapersTable instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::WpfApp1.Properties.Settings.Default.ProjectConnectionString, mappingSource)
+				base(global::WpfApp1.Properties.Settings.Default.ProjectConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -72,8 +75,10 @@ namespace WpfApp1
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PapersTable")]
-	public partial class PapersTable
+	public partial class PapersTable : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _Title;
 		
@@ -85,8 +90,25 @@ namespace WpfApp1
 		
 		private System.Guid _Id;
 		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnAuthorsChanging(string value);
+    partial void OnAuthorsChanged();
+    partial void OnContentsChanging(string value);
+    partial void OnContentsChanged();
+    partial void OnLinkChanging(string value);
+    partial void OnLinkChanged();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    #endregion
+		
 		public PapersTable()
 		{
+			OnCreated();
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
@@ -100,7 +122,11 @@ namespace WpfApp1
 			{
 				if ((this._Title != value))
 				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
 					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
@@ -116,7 +142,11 @@ namespace WpfApp1
 			{
 				if ((this._Authors != value))
 				{
+					this.OnAuthorsChanging(value);
+					this.SendPropertyChanging();
 					this._Authors = value;
+					this.SendPropertyChanged("Authors");
+					this.OnAuthorsChanged();
 				}
 			}
 		}
@@ -132,7 +162,11 @@ namespace WpfApp1
 			{
 				if ((this._Contents != value))
 				{
+					this.OnContentsChanging(value);
+					this.SendPropertyChanging();
 					this._Contents = value;
+					this.SendPropertyChanged("Contents");
+					this.OnContentsChanged();
 				}
 			}
 		}
@@ -148,12 +182,16 @@ namespace WpfApp1
 			{
 				if ((this._Link != value))
 				{
+					this.OnLinkChanging(value);
+					this.SendPropertyChanging();
 					this._Link = value;
+					this.SendPropertyChanged("Link");
+					this.OnLinkChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
 		public System.Guid Id
 		{
 			get
@@ -164,8 +202,32 @@ namespace WpfApp1
 			{
 				if ((this._Id != value))
 				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
 					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

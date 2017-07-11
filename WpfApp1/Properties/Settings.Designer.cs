@@ -33,5 +33,16 @@ namespace WpfApp1.Properties {
                 return ((string)(this["ProjectConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=naziproject.database.windows.net;Initial Catalog=Project;Persist Secu" +
+            "rity Info=True;User ID=Nazi;Password=N@zi111191")]
+        public string ProjectConnectionString1 {
+            get {
+                return ((string)(this["ProjectConnectionString1"]));
+            }
+        }
     }
 }
